@@ -6,8 +6,6 @@ pipeline {
 		stage('Build') {
 			steps {
 				echo 'Building..'
-				GIT_EMAIL=$(git --no-pager show -s --format='%ae' $GIT_COMMIT)
-				sh 'env'
 				sh 'javac HelloWorld.java'
 			}
 		}
@@ -18,12 +16,18 @@ pipeline {
 				sh 'cat cucumber.out'
 				sh 'ansifilter -H -i cucumber.out -o cucumber.html'
 				sh 'ansifilter -R -i cucumber.out -o cucumber.rtf'
-				sh 'env'
+			}
+		}
+		stage('Report') {
+			steps {
+				echo 'Reporting to the student....'
+				sh "cs4110report $WORKSPACE $GIT_COMMIT"
 			}
 		}
 		stage('Grade') {
 			steps {
-				echo 'Grading....'
+				echo 'Grading the assignment....'
+				sh "cs4110grade $WORKSPACE $GIT_COMMIT"
 			}
 		}
 	}
