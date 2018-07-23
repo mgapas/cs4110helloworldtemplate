@@ -5,5 +5,5 @@ Feature: Script must be present and be executable
 		Then 25 points are awarded
 
 	Scenario: hello must be executable
-		When I run `java ../../bin/HelloWorld.class` 
+		When I run `java -cp ../../bin HelloWorld` 
 		Then 25 points are awarded
