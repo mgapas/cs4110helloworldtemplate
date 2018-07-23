@@ -12,7 +12,7 @@ pipeline {
 		stage('Test') {
 			steps {
 				echo 'Testing..'
-				sh 'cucumber -s -o cucumber.out'
+				sh 'cucumber -s -c -o cucumber.out'
 				sh 'cat cucumber.out'
 			}
 		}
