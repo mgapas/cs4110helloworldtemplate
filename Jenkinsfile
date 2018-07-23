@@ -6,6 +6,7 @@ pipeline {
 		stage('Build') {
 			steps {
 				echo 'Building..'
+				GIT_EMAIL=$(git --no-pager show -s --format='%ae' $GIT_COMMIT)
 				sh 'env'
 				sh 'javac HelloWorld.java'
 			}
