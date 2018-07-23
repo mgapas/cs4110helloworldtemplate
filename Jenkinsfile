@@ -1,24 +1,23 @@
-// added a comment
-// a new comment from local on grandparent
 pipeline {
-    agent any
+	agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
+	stages {
+		stage('Build') {
+			steps {
+				echo 'Building..'
 				sh 'javac -o HelloWorld *.java'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Grade') {
-            steps {
-                echo 'Grading....'
-            }
-        }
-    }
+			}
+		}
+		stage('Test') {
+			steps {
+				echo 'Testing..'
+				sh 'cucumber -s'
+			}
+		}
+		stage('Grade') {
+			steps {
+				echo 'Grading....'
+			}
+		}
+	}
 }
