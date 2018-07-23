@@ -12,7 +12,8 @@ pipeline {
 		stage('Test') {
 			steps {
 				echo 'Testing..'
-				sh 'cucumber -s'
+				sh 'cucumber -s -f cucumber.out'
+				sh 'cat cucumber.out'
 			}
 		}
 		stage('Grade') {
